@@ -18,8 +18,8 @@ public class Assignment {
     @ManyToOne
     private Course course;
 
-    @OneToMany(mappedBy = "assignment", cascade = CascadeType.ALL)
-    private List<AssignmentGrades> grades;
+//    @OneToMany(mappedBy = "assignment", cascade = CascadeType.ALL)
+//    private List<AssignmentGrades> grades;
 
     // Constructors
     public Assignment() {}
@@ -53,6 +53,6 @@ public class Assignment {
     public Course getCourse() { return course; }
     public void setCourse(Course course) { this.course = course; }
 
-    public List<AssignmentGrades> getGrades() { return grades; }
-    public void setGrades(List<AssignmentGrades> grades) { this.grades = grades; }
+//    public List<AssignmentGrades> getGrades() { return grades; }
+//    public void setGrades(List<AssignmentGrades> grades) { this.grades = grades; }
 }

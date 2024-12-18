@@ -25,7 +25,8 @@ public class QuizService {
     @Autowired
     private UserRepository userRepo;
 
-    public Quiz createQuiz(Quiz quiz) {
+    public Quiz createQuiz(Quiz quiz)
+    {
         return quizRepo.save(quiz);
     }
 

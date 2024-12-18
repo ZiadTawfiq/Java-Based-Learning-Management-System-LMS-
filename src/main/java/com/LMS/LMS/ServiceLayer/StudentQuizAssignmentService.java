@@ -27,6 +27,7 @@ public class StudentQuizAssignmentService {
         return quizService.startQuiz(quizId, studentId);
     }
 
+
     public AssignmentGrades handInAssignment(Long assignmentId, Long studentId, String submissionContent) {
         // Submit an assignment
         return assignmentGradesService.submitAssignment(assignmentId, studentId, submissionContent);

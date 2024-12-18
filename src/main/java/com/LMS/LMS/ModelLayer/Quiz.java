@@ -22,8 +22,8 @@ public class Quiz {
     @JoinColumn(name = "course_id")
     private Course course;
 
-    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
-    private List<QuizGrades> grades;
+//    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
+//    private List<QuizGrades> grades;
 
     // Constructors
     public Quiz() {}
@@ -70,6 +70,7 @@ public class Quiz {
     public Course getCourse() { return course; }
     public void setCourse(Course course) { this.course = course; }
 
-    public List<QuizGrades> getGrades() { return grades; }
-    public void setGrades(List<QuizGrades> grades) { this.grades = grades; }
+
+//    public List<QuizGrades> getGrades() { return grades; }
+//    public void setGrades(List<QuizGrades> grades) { this.grades = grades; }
 }
