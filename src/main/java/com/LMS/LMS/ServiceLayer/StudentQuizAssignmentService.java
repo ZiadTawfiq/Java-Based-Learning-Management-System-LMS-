@@ -33,13 +33,23 @@ public class StudentQuizAssignmentService {
         return assignmentGradesService.submitAssignment(assignmentId, studentId, submissionContent);
     }
 
-    public List<AssignmentGrades> viewAssignmentGrades(Long studentId) {
+    public List<AssignmentGrades> viewAssignmentsGrades(Long studentId) {
         // View student's assignment grades
-        return assignmentGradesService.getStudentGrades(studentId);
+        return assignmentGradesService.getAssignmentsGrades(studentId);
     }
 
-    public List<QuizGrades> viewQuizGrades(Long studentId) {
+    public List<AssignmentGrades> viewAssignmentGrade(Long assignmentId) {
+        // View student's assignment grades
+        return assignmentGradesService.getAssignmentGrade(assignmentId);
+    }
+
+    public List<QuizGrades> viewQuizzesGrades(Long studentId) {
         // View student's quiz grades
-        return quizGradesService.getStudentQuizGrades(studentId);
+        return quizGradesService.getStudentQuizzesGrades(studentId);
+    }
+
+    public List<QuizGrades> viewQuizGrade(Long quizId) {
+        // View student's quiz grades
+        return quizGradesService.getQuizGrades(quizId);
     }
 }
