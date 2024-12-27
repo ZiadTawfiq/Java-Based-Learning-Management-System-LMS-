@@ -50,7 +50,16 @@ public class EmailNotificationService {
         } catch (jakarta.mail.MessagingException e) {
             throw new RuntimeException(e);
         }
+    }
+    public void sendCourseUpdateNotification(String studentEmail, String courseName) {
+        String subject = "Course Update Notification";
+        String body = String.format("Dear Student,<br><br>The course '%s' has been updated. Please check the latest details.<br>Thank you!", courseName);
 
+        try {
+            this.sendEmail(studentEmail, subject, body);
+        } catch (MessagingException | jakarta.mail.MessagingException e) {
+            throw new RuntimeException("Failed to send course update notification email.", e);
+        }
     }
 }
 

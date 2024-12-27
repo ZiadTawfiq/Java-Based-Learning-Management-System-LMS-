@@ -69,17 +69,24 @@ public class CourseService {
             throw new RuntimeException("Students do not have permission to update courses");
         }
 
-        // Check if user is the course instructor or an admin
-        if (currentUser.getRole() != Role.Admin &&
-                !course.getInstructor().getID().equals(currentUser.getID())) {
-            throw new RuntimeException("You do not have permission to update this course");
-        }
-
         course.setTitle(courseDTO.getTitle());
         course.setDescription(courseDTO.getDescription());
         course.setDuration(courseDTO.getDuration());
+        Course updatedCourse = courseRepository.save(course);
 
-        return courseRepository.save(course);
+        // Notify enrolled students about the course update
+        for (User student : course.getStudents()) {
+            // Create notification for the student
+            Notification studentNotification = new Notification();
+            studentNotification.setRecipientId(student.getID());
+            studentNotification.setSenderId(course.getInstructor().getID());
+            studentNotification.setMessage("The course '" + updatedCourse.getTitle() + "' has been updated. Please check the latest details.");
+            studentNotification.setType("COURSE_UPDATE");
+            notificationRepository.save(studentNotification);
+
+            emailNotificationService.sendCourseUpdateNotification(student.getEmail(), updatedCourse.getTitle());
+        }
+            return updatedCourse;
     }
 
     public void deleteCourse(Long id, User currentUser) {
@@ -91,11 +98,6 @@ public class CourseService {
             throw new RuntimeException("Students do not have permission to delete courses");
         }
 
-        // Check if user is the course instructor or an admin
-        if (currentUser.getRole() != Role.Admin &&
-                !course.getInstructor().getID().equals(currentUser.getID())) {
-            throw new RuntimeException("You do not have permission to delete this course");
-        }
         if (course.getAssignments() != null) {
             for (Assignment assignment : course.getAssignments()) {
                 assignmentRepo.delete(assignment);
