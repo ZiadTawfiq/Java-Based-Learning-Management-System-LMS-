@@ -36,7 +36,7 @@ public class InstructorCourseController {
         return ResponseEntity.status(HttpStatus.CREATED).body("Course created successfully.");
 
     }
-    @DeleteMapping("/courses/{CourseId}/students/{StudentId}")
+        @DeleteMapping("/courses/{CourseId}/students/{StudentId}")
     public ResponseEntity<String>RemoveStudentFromCourse(@PathVariable Long CourseId , @PathVariable Long StudentId)
     {
         instructorCourseService.removeStudentfromCourse(CourseId,StudentId);

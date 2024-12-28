@@ -28,7 +28,7 @@ public class QuizGradesController {
     @PostMapping("/{attemptId}/submit")
     public ResponseEntity<QuizGrades> submitQuiz(
             @PathVariable Long attemptId,
-            @RequestBody String answers) {
+            @RequestParam String answers) {
         QuizGrades submission = gradesService.submitQuizAttempt(attemptId, answers);
         return submission != null ?
                 ResponseEntity.ok(submission) :
