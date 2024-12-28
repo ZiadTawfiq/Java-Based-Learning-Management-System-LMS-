@@ -63,4 +63,9 @@
         public ResponseEntity<List<User>> getEnrolledStudents(@PathVariable Long courseId) {
             return ResponseEntity.ok(courseService.getEnrolledStudents(courseId));
         }
+        @GetMapping("/{courseId}/MediaFiles")
+        public ResponseEntity<List<String>> getCourseMediaFiles(@PathVariable Long courseId) {
+            List<String> mediaFiles = courseService.getCourseMediaFiles(courseId);
+            return new ResponseEntity<>(mediaFiles, HttpStatus.OK);
+        }
     }

@@ -5,6 +5,7 @@ import com.LMS.LMS.RepositoryLayer.CourseRepository;
 import com.LMS.LMS.RepositoryLayer.UserRepository;
 import com.LMS.LMS.RepositoryLayer.AssignmentRepo;
 import com.LMS.LMS.RepositoryLayer.NotificationRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,7 @@ public class CourseService {
         course.setDescription(courseDTO.getDescription());
         course.setDuration(courseDTO.getDuration());
         course.setInstructor(instructor);
+        course.setMediaFiles(courseDTO.getMediaFiles());
 
         return courseRepository.save(course);
     }
@@ -72,6 +74,7 @@ public class CourseService {
         course.setTitle(courseDTO.getTitle());
         course.setDescription(courseDTO.getDescription());
         course.setDuration(courseDTO.getDuration());
+        course.setMediaFiles(courseDTO.getMediaFiles());
         Course updatedCourse = courseRepository.save(course);
 
         // Notify enrolled students about the course update
@@ -152,5 +155,10 @@ public class CourseService {
                 .orElseThrow(() -> new RuntimeException("Course not found with id: " + courseId));
 
         return course.getStudents();
+    }
+    public List<String> getCourseMediaFiles(Long courseId) {
+        Course course = courseRepository.findById(courseId)
+                .orElseThrow(() -> new EntityNotFoundException("Course with ID " + courseId + " not found."));
+        return course.getMediaFiles();
     }
 }
