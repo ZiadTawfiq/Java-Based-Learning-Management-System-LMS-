@@ -9,8 +9,9 @@ VALUES ( 'admin', 'admin123', 'ADMIN', 'admin@example.com'),
 -- Insert statements for Course
 INSERT INTO Course (title, description, duration, instructor_id)
 VALUES ( 'Java Basics', 'Introduction to Java programming', 30, 2),
+       ( 'Spring Boot Advanced', 'Deep dive into Spring Boot framework', 45, 2),
        ( 'Software Engineering', 'Architectural styles', 45, 2),
-       ( 'Network', 'Introduction to Network', 30, 2);
+       ( 'Network', 'Introduction to Network',30,2);
 --
 -- Insert statements for Lesson
 INSERT INTO lesson ( topic, course_id)
